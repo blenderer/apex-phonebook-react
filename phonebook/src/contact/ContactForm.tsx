@@ -4,32 +4,15 @@ export default function ContactForm(props) {
 	const [lastName, setLastName] = React.useState("");
 	const [gender, setGender] = React.useState("");
 	const [email, setEmail] = React.useState("");
+	
 	const handleSubmit = event => {
 		event.preventDefault();
-		console.log(`
-      email: ${email}
-      firstName: ${firstName}
-      lastName: ${lastName}
-      gender: ${gender}`);
-		fetch("http://localhost:3001/contacts", {
-			method: "POST",
-			mode: "cors",
-			cache: "no-cache",
-			headers: {
-				"Content-Type": "application/json"
-			},
-			body: JSON.stringify({ firstName, lastName, email, gender })
-		})
-			.then(res => res.json())
-			.then(
-				result => {
-					props.onSuccess(result);
-				},
-				error => {
-					props.onError(error);
-				}
-			);
+
+		
+		
+			props.submit({ firstName, lastName, email, gender })
 	};
+
 	return (
 		<form onSubmit={handleSubmit}>
 			<h1>Create Contact</h1>
